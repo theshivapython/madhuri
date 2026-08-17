@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Katari Madhuri 💙 | A Special College Journey</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sacramento&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React & ReactDOM CDNs -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+
+  <!-- Babel Standalone CDN -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+            handwriting: ['Sacramento', 'cursive']
+          },
+          colors: {
+            midnight: '#030712',
+            navy: '#0b132b',
+            deepblue: '#1c2541',
+            electric: '#3a86ff',
+            neoncyan: '#00f0ff',
+            softsky: '#38bdf8',
+            sapphire: '#2563eb'
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'spin-slow': 'spin 12s linear infinite',
+            'shimmer': 'shimmer 2.5s infinite linear',
+            'heart-beat': 'heartBeat 1.8s infinite ease-in-out'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(58,134,255,0.4))' },
+              '50%': { opacity: '0.9', filter: 'drop-shadow(0 0 30px rgba(0,240,255,0.8))' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            },
+            heartBeat: {
+              '0%, 100%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.15)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Glassmorphism & Enhanced Aesthetic Styles */
+    body {
+      background-color: #030712;
+      color: #f8fafc;
+      overflow-x: hidden;
+      font-family: 'Outfit', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .glass-card-hover {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card-hover:hover {
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 12px 45px 0 rgba(58, 134, 255, 0.4);
+      transform: translateY(-5px) scale(1.015);
+    }
+
+    .text-gradient-blue {
+      background: linear-gradient(135deg, #ffffff 0%, #38bdf8 45%, #3a86ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #e0f2fe 0%, #00f0ff 50%, #3a86ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glow-button {
+      position: relative;
+      background: linear-gradient(135deg, #1d4ed8 0%, #3a86ff 100%);
+      box-shadow: 0 0 25px rgba(58, 134, 255, 0.6), inset 0 0 12px rgba(255, 255, 255, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 45px rgba(0, 240, 255, 0.9), inset 0 0 18px rgba(255, 255, 255, 0.5);
+      transform: scale(1.05);
+    }
+
+    /* Equalizer Bar Animation for BGM */
+    .eq-bar {
+      width: 3px;
+      background-color: #38bdf8;
+      border-radius: 2px;
+      animation: eqPulse 1.2s ease-in-out infinite alternate;
+    }
+
+    .eq-bar:nth-child(1) {
+      height: 12px;
+      animation-delay: 0.1s;
+    }
+
+    .eq-bar:nth-child(2) {
+      height: 18px;
+      animation-delay: 0.3s;
+    }
+
+    .eq-bar:nth-child(3) {
+      height: 8px;
+      animation-delay: 0.5s;
+    }
+
+    .eq-bar:nth-child(4) {
+      height: 15px;
+      animation-delay: 0.2s;
+    }
+
+    @keyframes eqPulse {
+      0% {
+        transform: scaleY(0.3);
+      }
+
+      100% {
+        transform: scaleY(1);
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1c2541;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3a86ff;
+    }
+
+    .camera-shake {
+      animation: shake 0.3s cubic-bezier(.36, .07, .19, .97) both;
+    }
+
+    @keyframes shake {
+
+      10%,
+      90% {
+        transform: translate3d(-2px, 0, 0);
+      }
+
+      20%,
+      80% {
+        transform: translate3d(4px, 0, 0);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-6px, 0, 0);
+      }
+
+      40%,
+      60% {
+        transform: translate3d(6px, 0, 0);
+      }
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-electric selection:text-white min-h-screen">
+
+  <div id="root"></div>
+
+  <!-- Main Application Script -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- ENHANCED SOUND & MUSIC ENGINE (Web Audio API + Audio File Support) ---
+    class SoundFXEngine {
+      constructor() {
+        this.ctx = null;
+        this.isMuted = true;
+        this.bgmPlaying = false;
+        this.audioEl = null;
+        this.bgmInterval = null;
+      }
+
+      initCtx() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playClick() {
+        if (this.isMuted) return;
+        this.initCtx();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(850, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(450, this.ctx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.05);
+      }
+
+      playWhoosh() {
+        if (this.isMuted) return;
+        this.initCtx();
+        const bufferSize = this.ctx.sampleRate * 0.4;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(200, this.ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(1400, this.ctx.currentTime + 0.2);
+        filter.frequency.exponentialRampToValueAtTime(120, this.ctx.currentTime + 0.4);
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.01, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.35, this.ctx.currentTime + 0.2);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.4);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+        noise.start();
+      }
+
+      playCountBeep(num) {
+        if (this.isMuted) return;
+        this.initCtx();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const freq = num === 0 ? 880 : 440 + (4 - num) * 110;
+        osc.type = num === 0 ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + (num === 0 ? 0.6 : 0.2));
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + (num === 0 ? 0.6 : 0.2));
+      }
+
+      playCandleExtinguish() {
+        if (this.isMuted) return;
+        this.initCtx();
+        const bufferSize = this.ctx.sampleRate * 0.3;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'highpass';
+        filter.frequency.setValueAtTime(2200, this.ctx.currentTime);
+
+        const gain = this.ctx.createGain();
+        gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+        noise.start();
+      }
+
+      playCakeCut() {
+        if (this.isMuted) return;
+        this.initCtx();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, this.ctx.currentTime);
+        osc.frequency.linearRampToValueAtTime(55, this.ctx.currentTime + 0.35);
+        gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.35);
+      }
+
+      playConfettiPop() {
+        if (this.isMuted) return;
+        this.initCtx();
+        [650, 950, 1300].forEach((freq, idx) => {
+          setTimeout(() => {
+            if (!this.ctx) return;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(160, this.ctx.currentTime + 0.18);
+            gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 0.18);
+          }, idx * 55);
+        });
+      }
+
+      toggleBGM() {
+        this.initCtx();
+        this.isMuted = !this.isMuted;
+        if (!this.isMuted) {
+          // Attempt to play external audio file first, fallback to synthesized chord progression
+          if (!this.audioEl) {
+            this.audioEl = new Audio('/assets/music.mp3');
+            this.audioEl.loop = true;
+            this.audioEl.volume = 0.4;
+          }
+          this.audioEl.play().then(() => {
+            this.bgmPlaying = true;
+          }).catch(() => {
+            // Fallback to Web Audio API ambient synth chord progression
+            this.startAmbientSynthesizerBGM();
+          });
+        } else {
+          if (this.audioEl) this.audioEl.pause();
+          this.stopAmbientSynth();
+        }
+        return !this.isMuted;
+      }
+
+      startAmbientSynthesizerBGM() {
+        if (this.bgmPlaying || !this.ctx) return;
+        this.bgmPlaying = true;
+        const chords = [
+          [261.63, 329.63, 392.00, 493.88], // Cmaj7
+          [220.00, 261.63, 329.63, 392.00], // Am7
+          [174.61, 220.00, 261.63, 349.23], // Fmaj7
+          [196.00, 246.94, 293.66, 392.00]  // G
+        ];
+        let step = 0;
+
+        const playChord = () => {
+          if (this.isMuted) return;
+          const currentChord = chords[step % chords.length];
+          step++;
+
+          currentChord.forEach(freq => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+            gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.035, this.ctx.currentTime + 2.2);
+            gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 4.8);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 5);
+          });
+        };
+
+        playChord();
+        this.bgmInterval = setInterval(playChord, 5000);
+      }
+
+      stopAmbientSynth() {
+        this.bgmPlaying = false;
+        if (this.bgmInterval) clearInterval(this.bgmInterval);
+      }
+    }
+
+    const soundFX = new SoundFXEngine();
+
+    // --- ENHANCED CANVAS BACKGROUND (Stars + Floating Glowing Hearts + Light Rays) ---
+    const AmbientCanvas = ({ particleSpeedFactor = 1 }) => {
+      const canvasRef = useRef(null);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const handleResize = () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', handleResize);
+
+        // Starfield
+        const numStars = Math.min(Math.floor(width * 0.12), 140);
+        const stars = Array.from({ length: numStars }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.6 + 0.4,
+          alpha: Math.random(),
+          speed: (Math.random() * 0.02 + 0.005),
+          color: Math.random() > 0.35 ? '#38bdf8' : (Math.random() > 0.5 ? '#00f0ff' : '#ffffff')
+        }));
+
+        // Floating Hearts Particles
+        const numHearts = 16;
+        const hearts = Array.from({ length: numHearts }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 12 + 8,
+          speedY: Math.random() * 0.6 + 0.3,
+          speedX: Math.sin(Math.random() * Math.PI) * 0.3,
+          alpha: Math.random() * 0.5 + 0.2,
+          pulse: Math.random() * Math.PI
+        }));
+
+        let time = 0;
+
+        const drawHeart = (x, y, size, alpha) => {
+          ctx.save();
+          ctx.beginPath();
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = 'rgba(56, 189, 248, 0.6)';
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = '#00f0ff';
+
+          const topCurveHeight = size * 0.3;
+          ctx.moveTo(x, y + topCurveHeight);
+          // top left curve
+          ctx.bezierCurveTo(
+            x, y,
+            x - size / 2, y,
+            x - size / 2, y + topCurveHeight
+          );
+          // bottom left curve
+          ctx.bezierCurveTo(
+            x - size / 2, y + (size + topCurveHeight) / 2,
+            x, y + (size + topCurveHeight) / 1.4,
+            x, y + size
+          );
+          // bottom right curve
+          ctx.bezierCurveTo(
+            x, y + (size + topCurveHeight) / 1.4,
+            x + size / 2, y + (size + topCurveHeight) / 2,
+            x + size / 2, y + topCurveHeight
+          );
+          // top right curve
+          ctx.bezierCurveTo(
+            x + size / 2, y,
+            x, y,
+            x, y + topCurveHeight
+          );
+          ctx.fill();
+          ctx.restore();
+        };
+
+        const render = () => {
+          time += 0.01;
+          ctx.clearRect(0, 0, width, height);
+
+          // Deep radial nebula glow
+          const gradient = ctx.createRadialGradient(
+            width * 0.5, height * 0.4, 10,
+            width * 0.5, height * 0.5, Math.max(width, height) * 0.75
+          );
+          gradient.addColorStop(0, 'rgba(11, 19, 43, 0.92)');
+          gradient.addColorStop(0.4, 'rgba(28, 37, 65, 0.55)');
+          gradient.addColorStop(1, 'rgba(3, 7, 18, 0.98)');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, width, height);
+
+          // Draw & update stars
+          stars.forEach(star => {
+            star.alpha += Math.sin(time * star.speed * 10) * 0.01;
+            const currentAlpha = Math.max(0.1, Math.min(1, star.alpha));
+
+            star.y -= (0.25 * particleSpeedFactor);
+            if (star.y < 0) star.y = height;
+
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fillStyle = star.color;
+            ctx.globalAlpha = currentAlpha;
+            ctx.fill();
+
+            if (star.radius > 1.2) {
+              ctx.beginPath();
+              ctx.arc(star.x, star.y, star.radius * 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(56, 189, 248, 0.15)';
+              ctx.fill();
+            }
+          });
+
+          // Draw floating hearts
+          hearts.forEach(heart => {
+            heart.y -= heart.speedY * particleSpeedFactor;
+            heart.x += Math.sin(time + heart.pulse) * 0.4;
+            if (heart.y < -20) {
+              heart.y = height + 20;
+              heart.x = Math.random() * width;
+            }
+            drawHeart(heart.x, heart.y, heart.size, heart.alpha);
+          });
+
+          ctx.globalAlpha = 1.0;
+          animationFrameId = requestAnimationFrame(render);
+        };
+
+        render();
+
+        return () => {
+          window.removeEventListener('resize', handleResize);
+          cancelAnimationFrame(animationFrameId);
+        };
+      }, [particleSpeedFactor]);
+
+      return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />;
+    };
+
+    // --- MAIN REACT APPLICATION COMPONENT ---
+    const App = () => {
+      const [stage, setStage] = useState('intro');
+      const [countdownNum, setCountdownNum] = useState(3);
+      const [isMuted, setIsMuted] = useState(true);
+      const [lightboxImg, setLightboxImg] = useState(null);
+
+      // Cake state
+      const [candlesLit, setCandlesLit] = useState([true, true, true, true]);
+      const [wishMade, setWishMade] = useState(false);
+      const [cakeCut, setCakeCut] = useState(false);
+      const [isShaking, setIsShaking] = useState(false);
+
+      useEffect(() => {
+        soundFX.initCtx();
+      }, []);
+
+      const handleStartJourney = () => {
+        soundFX.playClick();
+        soundFX.playWhoosh();
+        if (isMuted) {
+          const playing = soundFX.toggleBGM();
+          setIsMuted(!playing);
+        }
+        setStage('countdown');
+      };
+
+      // Countdown timer handler
+      useEffect(() => {
+        if (stage === 'countdown') {
+          soundFX.playCountBeep(countdownNum);
+          if (countdownNum > 0) {
+            const timer = setTimeout(() => {
+              setCountdownNum(prev => prev - 1);
+            }, 1100);
+            return () => clearTimeout(timer);
+          } else {
+            soundFX.playCountBeep(0);
+            confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
+            const timer = setTimeout(() => {
+              setStage('main');
+            }, 1400);
+            return () => clearTimeout(timer);
+          }
+        }
+      }, [stage, countdownNum]);
+
+      const toggleAudio = () => {
+        const playing = soundFX.toggleBGM();
+        setIsMuted(!playing);
+      };
+
+      const handleBlowCandle = (index) => {
+        soundFX.playCandleExtinguish();
+        setCandlesLit(prev => {
+          const updated = [...prev];
+          updated[index] = false;
+          return updated;
+        });
+      };
+
+      useEffect(() => {
+        if (stage === 'main' && candlesLit.every(c => c === false) && !wishMade) {
+          setTimeout(() => {
+            setWishMade(true);
+          }, 800);
+        }
+      }, [candlesLit, stage, wishMade]);
+
+      const handleCutCake = () => {
+        if (cakeCut) return;
+        soundFX.playCakeCut();
+        setCakeCut(true);
+        setIsShaking(true);
+
+        setTimeout(() => {
+          setIsShaking(false);
+          soundFX.playConfettiPop();
+          confetti({
+            particleCount: 130,
+            angle: 60,
+            spread: 85,
+            origin: { x: 0, y: 0.7 },
+            colors: ['#38bdf8', '#00f0ff', '#ffffff', '#3a86ff', '#cbd5e1']
+          });
+          confetti({
+            particleCount: 130,
+            angle: 120,
+            spread: 85,
+            origin: { x: 1, y: 0.7 },
+            colors: ['#38bdf8', '#00f0ff', '#ffffff', '#3a86ff', '#cbd5e1']
+          });
+        }, 300);
+
+        setTimeout(() => {
+          setStage('paperblast');
+        }, 3500);
+      };
+
+      const handleFinishConfetti = () => {
+        soundFX.playWhoosh();
+        setStage('finalmessage');
+      };
+
+      const handleFinishFinalMessage = () => {
+        soundFX.playWhoosh();
+        setStage('fireworks');
+      };
+
+      const handleReplay = () => {
+        soundFX.playClick();
+        setCandlesLit([true, true, true, true]);
+        setWishMade(false);
+        setCakeCut(false);
+        setCountdownNum(3);
+        setStage('intro');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      return (
+        <div className={`relative min-h-screen text-slate-100 overflow-x-hidden ${isShaking ? 'camera-shake' : ''}`}>
+          <AmbientCanvas particleSpeedFactor={stage === 'countdown' ? 3 : 1} />
+
+          {/* AUDIO CONTROLLER WIDGET & EQUALIZER */}
+          <div className="fixed top-5 right-5 z-50">
+            <button
+              onClick={toggleAudio}
+              className="glass-card hover:border-electric text-white px-4 py-2 rounded-full flex items-center gap-2.5 text-sm font-medium tracking-wide shadow-xl transition-all transform active:scale-95 border-sky-400/40"
+            >
+              {!isMuted ? (
+                <div className="flex items-end gap-0.5 h-4">
+                  <div className="eq-bar"></div>
+                  <div className="eq-bar"></div>
+                  <div className="eq-bar"></div>
+                  <div className="eq-bar"></div>
+                </div>
+              ) : (
+                <span>🎵</span>
+              )}
+              <span>{!isMuted ? 'MUSIC ON' : 'MUSIC OFF'}</span>
+            </button>
+          </div>
+
+          {/* --- STAGE 1: INTRO SCREEN --- */}
+          {stage === 'intro' && (
+            <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 text-center">
+              <div className="max-w-2xl space-y-8 animate-fade-in">
+                <div className="inline-block px-4 py-1.5 rounded-full border border-sky-400/40 bg-sky-950/60 text-sky-300 text-xs font-semibold tracking-widest uppercase mb-2 shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+                  Dedicated Experience 💙
+                </div>
+
+                <h2 className="text-xl md:text-2xl font-light text-slate-300 tracking-wide animate-pulse">
+                  A little something for someone special...
+                </h2>
+
+                <h1 className="text-5xl md:text-7xl font-serif font-extrabold text-gradient-blue tracking-tight py-2">
+                  Katari Madhuri 💙
+                </h1>
+
+                <p className="text-base md:text-lg text-slate-400 font-light max-w-md mx-auto">
+                  Before you continue...
+                </p>
+
+                <div className="pt-6">
+                  <button
+                    onClick={handleStartJourney}
+                    className="glow-button px-10 py-5 rounded-full text-white font-bold text-lg tracking-widest uppercase transition-all duration-300 shadow-2xl flex items-center gap-3 mx-auto"
+                  >
+                    <span>START THE JOURNEY ✨</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --- STAGE 2: CINEMATIC COUNTDOWN --- */}
+          {stage === 'countdown' && (
+            <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 text-center">
+              <p className="text-xl md:text-2xl text-sky-300 font-light mb-8 tracking-widest">
+                Your surprise begins in...
+              </p>
+
+              <div className="relative flex items-center justify-center h-48 w-48">
+                <span key={countdownNum} className="text-8xl md:text-9xl font-extrabold font-serif text-gradient-cyan transform transition-all duration-700 animate-ping absolute">
+                  {countdownNum > 0 ? countdownNum : '✨'}
+                </span>
+                <span className="text-8xl md:text-9xl font-extrabold font-serif text-white drop-shadow-[0_0_35px_rgba(56,189,248,0.9)]">
+                  {countdownNum > 0 ? countdownNum : '0'}
+                </span>
+              </div>
+
+              {countdownNum === 0 && (
+                <div className="mt-8 text-3xl md:text-4xl font-serif text-sky-200 animate-bounce">
+                  This one's for you, Madhuri 💙
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* --- STAGE 3: MAIN INTERACTIVE JOURNEY --- */}
+          {stage === 'main' && (
+            <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8 py-16 space-y-32">
+
+              {/* HERO SECTION */}
+              <section className="min-h-[80vh] flex flex-col justify-center items-center text-center space-y-8 pt-12">
+                <span className="text-sky-400 font-medium text-lg md:text-xl tracking-wider">
+                  Some people enter our lives as classmates...
+                </span>
+
+                <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-white leading-tight">
+                  ...and somehow become family.
+                </h1>
+
+                <div className="w-28 h-1 bg-gradient-to-r from-transparent via-electric to-transparent my-4"></div>
+
+                <h2 className="text-5xl md:text-7xl font-serif text-gradient-blue font-bold tracking-tight">
+                  Katari Madhuri 💙
+                </h2>
+
+                <p className="text-lg md:text-2xl text-slate-300 font-light max-w-2xl">
+                  From college friends to something much more special.
+                </p>
+
+                <div className="pt-8 text-sky-400/60 animate-bounce">
+                  <span className="text-sm tracking-widest uppercase">Scroll Down to Begin</span>
+                  <div className="text-2xl mt-1">↓</div>
+                </div>
+              </section>
+
+              {/* COLLEGE STORY TIMELINE */}
+              <section className="space-y-16">
+                <div className="text-center space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-sky-400 font-semibold">Our Journey</span>
+                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-gradient-blue">Our College Story</h2>
+                </div>
+
+                <div className="relative border-l-2 border-sky-500/30 ml-4 md:ml-32 space-y-16 pl-8">
+                  {/* Chapter 01 */}
+                  <div className="relative group">
+                    <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-electric border-4 border-midnight group-hover:scale-125 transition-all"></div>
+                    <div className="glass-card p-6 md:p-8 rounded-2xl glass-card-hover space-y-3">
+                      <span className="text-sky-400 text-sm font-bold tracking-wider uppercase">Chapter 01</span>
+                      <h3 className="text-2xl font-bold text-white">"It started with college."</h3>
+                      <p className="text-slate-300 leading-relaxed font-light">
+                        Two B.Tech students. One campus. Countless conversations waiting to happen.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Chapter 02 */}
+                  <div className="relative group">
+                    <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-neoncyan border-4 border-midnight group-hover:scale-125 transition-all"></div>
+                    <div className="glass-card p-6 md:p-8 rounded-2xl glass-card-hover space-y-3">
+                      <span className="text-neoncyan text-sm font-bold tracking-wider uppercase">Chapter 02</span>
+                      <h3 className="text-2xl font-bold text-white">"Somewhere along the way..."</h3>
+                      <p className="text-slate-300 leading-relaxed font-light">
+                        Classes became conversations. Conversations became jokes. Jokes became lifelong memories.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Chapter 03 */}
+                  <div className="relative group">
+                    <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-softsky border-4 border-midnight group-hover:scale-125 transition-all"></div>
+                    <div className="glass-card p-6 md:p-8 rounded-2xl glass-card-hover space-y-4">
+                      <span className="text-softsky text-sm font-bold tracking-wider uppercase">Chapter 03</span>
+                      <h3 className="text-2xl font-bold text-white">"And then..."</h3>
+                      <p className="text-slate-300 leading-relaxed font-light">
+                        You stopped feeling like just a college friend.
+                      </p>
+                      <div className="text-3xl font-serif font-bold text-gradient-cyan pt-2">
+                        You became family. 💙
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Chapter 04 */}
+                  <div className="relative group">
+                    <div className="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-white border-4 border-electric group-hover:scale-125 transition-all shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
+                    <div className="glass-card p-6 md:p-8 rounded-2xl glass-card-hover space-y-4 border-electric/40">
+                      <span className="text-white text-sm font-extrabold tracking-wider uppercase bg-electric/30 px-3 py-1 rounded-full">Chapter 04</span>
+                      <h3 className="text-3xl font-bold text-gradient-blue">"4th Year."</h3>
+                      <p className="text-slate-200 text-lg font-medium">We're finally here.</p>
+                      <div className="p-4 rounded-xl bg-sky-950/40 border border-sky-500/20 text-sky-200 space-y-2 italic">
+                        <p>"One more year of college memories..."</p>
+                        <p className="font-bold text-white">"...and a lifetime of memories still waiting for us."</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* PHOTO MEMORY GALLERY */}
+              <section className="space-y-12">
+                <div className="text-center space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-sky-400 font-semibold">Memories</span>
+                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-gradient-blue">Photo Memory Gallery</h2>
+                  <p className="text-slate-400 font-light">Tap any photo frame to expand memory</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {/* Photo Card 1 */}
+                  <div
+                    onClick={() => setLightboxImg({ url: 'public/assets/photo1.jpeg', title: 'Campus Sunset Talks', desc: 'Where two strangers became inseparable best friends on campus steps.' })}
+                    className="glass-card p-4 rounded-2xl glass-card-hover cursor-pointer transform -rotate-2 hover:rotate-0"
+                  >
+                    <div className="bg-slate-900 rounded-xl overflow-hidden aspect-square border border-sky-500/20 relative group">
+                      <img src="/assets/photo1.jpg" alt="College Campus Days" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span className="text-white font-medium text-sm">Expand Memory 🔍</span>
+                      </div>
+                    </div>
+                    <div className="pt-4 text-center">
+                      <span className="font-serif text-lg text-sky-200 font-bold">Campus Sunset Talks</span>
+                    </div>
+                  </div>
+
+                  {/* Photo Card 2 */}
+                  <div
+                    onClick={() => setLightboxImg({ url: 'public/assets/photo2.jpeg', title: 'Engineering Besties', desc: 'Late night exam preps, endless library laughter, and coffee runs.' })}
+                    className="glass-card p-4 rounded-2xl glass-card-hover cursor-pointer transform rotate-3 hover:rotate-0"
+                  >
+                    <div className="bg-slate-900 rounded-xl overflow-hidden aspect-square border border-sky-500/20 relative group">
+                      <img src="/assets/photo2.jpg" alt="Library Study Laughs" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span className="text-white font-medium text-sm">Expand Memory 🔍</span>
+                      </div>
+                    </div>
+                    <div className="pt-4 text-center">
+                      <span className="font-serif text-lg text-sky-200 font-bold">Engineering Besties</span>
+                    </div>
+                  </div>
+
+                  {/* Photo Card 3 */}
+                  <div
+                    onClick={() => setLightboxImg({ url: 'public/assets/photo3.jpeg', title: '4th Year Milestone', desc: 'Entering final year together as brother & sister for life!' })}
+                    className="glass-card p-4 rounded-2xl glass-card-hover cursor-pointer transform -rotate-1 hover:rotate-0"
+                  >
+                    <div className="bg-slate-900 rounded-xl overflow-hidden aspect-square border border-sky-500/20 relative group">
+                      <img src="/assets/photo3.jpg" alt="4th Year Milestone" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span className="text-white font-medium text-sm">Expand Memory 🔍</span>
+                      </div>
+                    </div>
+                    <div className="pt-4 text-center">
+                      <span className="font-serif text-lg text-sky-200 font-bold">Siblings For Life 💙</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* "THINGS I APPRECIATE ABOUT YOU" */}
+              <section className="space-y-12">
+                <div className="text-center space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-sky-400 font-semibold">Tribute</span>
+                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-gradient-blue">Things I Appreciate About You</h2>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { icon: '💙', title: 'Your Heart', text: 'You care more than you sometimes realize.' },
+                    { icon: '✨', title: 'Your Smile', text: 'One of those little things that can make a bad day better.' },
+                    { icon: '😂', title: 'Your Madness', text: 'Because normal would honestly be boring.' },
+                    { icon: '🌟', title: 'Your Strength', text: 'You keep moving forward even when things get difficult.' },
+                    { icon: '🌌', title: 'Your Dreams', text: 'I hope you achieve every single one of them.' },
+                    { icon: '🫶', title: 'Our Bond', text: 'Some friendships simply become family.' }
+                  ].map((card, idx) => (
+                    <div key={idx} className="glass-card p-6 rounded-2xl glass-card-hover space-y-3 flex flex-col justify-between">
+                      <div className="text-4xl mb-2">{card.icon}</div>
+                      <h3 className="text-xl font-bold text-white">{card.title}</h3>
+                      <p className="text-slate-300 font-light text-sm leading-relaxed">{card.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* PERSONAL LETTER */}
+              <section className="space-y-8">
+                <div className="text-center space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-sky-400 font-semibold">From The Heart</span>
+                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-gradient-blue">Something I Really Want You To Know...</h2>
+                </div>
+
+                <div className="glass-card p-8 md:p-12 rounded-3xl max-w-3xl mx-auto space-y-6 leading-relaxed text-slate-200 font-light text-base md:text-lg border-sky-500/30">
+                  <p className="font-serif text-2xl text-sky-300 font-bold">💙 Dear Madhuri,</p>
+
+                  <p>
+                    మన పరిచయం ఎలా మొదలైందో, ఎప్పుడు ఇంత మంచి బంధంగా మారిందో నాకు కూడా సరిగ్గా తెలియదు. కానీ కాలేజీలో కలిసిన ఎంతోమంది పరిచయాల్లో, నువ్వు మాత్రం ఒక <strong className="text-sky-300 font-semibold">special person</strong> గా మిగిలిపోయావు.
+                  </p>
+
+                  <p>
+                    మన మధ్య జరిగిన చిన్న చిన్న conversations, నవ్వులు, jokes, random moments, కలిసి గడిపిన రోజులు — అప్పట్లో అవి సాధారణమైన క్షణాల్లానే అనిపించాయి. కానీ ఇప్పుడు వెనక్కి చూసుకుంటే, అవే మనకి <strong className="text-gradient-cyan font-bold">మంచి జ్ఞాపకాలు</strong> అయ్యాయి. 💙
+                  </p>
+
+                  <p>
+                    ఇప్పుడు మనం <strong className="text-white font-semibold">B.Tech 4th year</strong> లోకి వచ్చేశాం. ఇంకొంత కాలానికి ఈ classrooms, college days, daily conversations అన్నీ memories అయిపోతాయి. మనం మన career paths లో busy అవుతాం. ఎక్కడ ఉంటామో, ఎంత దూరంగా ఉంటామో కూడా తెలియదు.
+                  </p>
+
+                  <p className="text-sky-200 font-medium">
+                    కానీ ఒక విషయం మాత్రం ఎప్పటికీ మారకూడదని నేను కోరుకుంటున్నాను — <strong className="text-gradient-blue font-bold">మన bond.</strong>
+                  </p>
+
+                  <p>
+                    నీ జీవితంలో నువ్వు ఎన్నో విజయాలు సాధించాలి. నీకు నచ్చిన dreams అన్నీ నిజం కావాలి. నువ్వు ఎక్కడికి వెళ్లినా, ఎంత పెద్ద స్థాయికి వెళ్లినా, నీ smile మాత్రం ఇలాగే ఉండాలి. ✨
+                  </p>
+
+                  <p>
+                    నీ happiness లో నేను గుర్తుకు రాకపోయినా పర్లేదు. నువ్వు నీ జీవితాన్ని పూర్తిగా enjoy చేస్తూ ఉండాలి. కానీ ఎప్పుడైనా life కొంచెం difficult గా అనిపించినప్పుడు, ఏదైనా బాధ వచ్చినప్పుడు, లేదా “నాతో ఎవరు ఉన్నారు?” అనిపించినప్పుడు మాత్రం ఒక విషయం గుర్తు పెట్టుకో —
+                  </p>
+
+                  <div className="p-6 rounded-2xl bg-sky-950/70 border border-sky-500/40 text-center space-y-3 my-6 shadow-[0_0_25px_rgba(56,189,248,0.2)]">
+                    <p className="text-lg text-sky-200 font-medium italic">“నాకు ఒక friend ఉన్నాడు…</p>
+                    <p className="text-xl md:text-2xl font-serif font-bold text-gradient-cyan">ఏ situation అయినా, నేను పిలిస్తే నా పక్కన నిలబడతాడు.” 💙</p>
+                  </div>
+
+                  <p>
+                    మన friendship కి ప్రతిరోజూ మాట్లాడటం అవసరం లేదు. ప్రతిరోజూ కలవడం అవసరం లేదు. ఎందుకంటే కొన్ని bonds కి <strong className="text-sky-300">distance పరీక్ష కాదు.</strong>
+                  </p>
+
+                  <div className="space-y-1 text-slate-300 py-2 border-l-2 border-sky-500/40 pl-4">
+                    <p>కాలం మారొచ్చు.</p>
+                    <p>మన జీవితాలు మారొచ్చు.</p>
+                    <p>మన దారులు వేరవొచ్చు.</p>
+                  </div>
+
+                  <p className="text-white font-medium">
+                    కానీ మనం కలిసి నవ్వుకున్న ఆ జ్ఞాపకాలు మాత్రం ఎప్పటికీ మనవే.
+                  </p>
+
+                  <p className="text-lg text-sky-200 font-serif font-bold py-2">
+                    Collegeలో మొదలైన ఈ friendship… Lifeలో ఎప్పటికీ ఉండే beautiful bond గా మారాలని కోరుకుంటున్నాను. 🌌
+                  </p>
+
+                  <div className="p-6 rounded-2xl bg-slate-900/80 border border-sky-400/30 space-y-2 text-sky-100">
+                    <p className="font-semibold text-sky-300">So, Madhuri…</p>
+                    <p>ఎప్పుడూ happyగా ఉండు.</p>
+                    <p>ఎప్పుడూ smile చేస్తూ ఉండు.</p>
+                    <p>నీ dreams ని ఎప్పుడూ వదులుకోకు.</p>
+                    <p>మరియు ఎప్పుడైనా life tough అనిపిస్తే… ఒక్కసారి నన్ను గుర్తు పెట్టుకో.</p>
+                    <p className="text-xl font-bold text-gradient-cyan pt-2">నేను ఉంటాను. Always. 💙</p>
+                  </div>
+
+                  <div className="pt-6 text-right space-y-1">
+                    <p className="font-light text-sm text-slate-400">With lots of love, laughter & countless memories,</p>
+                    <p className="font-serif text-3xl text-gradient-blue font-bold">— Shiva 💙</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* CAKE CUTTING EXPERIENCE */}
+              <section className="space-y-12 pt-12 text-center">
+                <div className="space-y-4">
+                  <h3 className="text-xl md:text-2xl text-sky-400 font-medium">Okay... enough emotional stuff.</h3>
+                  <h2 className="text-5xl md:text-6xl font-serif font-extrabold text-gradient-cyan">It's CAKE TIME! 🎂😂</h2>
+                </div>
+
+                {/* Cake Scene Container */}
+                <div className="glass-card p-8 md:p-12 rounded-3xl max-w-xl mx-auto relative overflow-hidden border-sky-500/40">
+                  <div className="absolute inset-0 bg-gradient-to-b from-sky-500/10 via-transparent to-midnight pointer-events-none"></div>
+
+                  {!wishMade ? (
+                    <div className="space-y-8">
+                      <p className="text-sky-200 font-medium text-lg animate-pulse">
+                        👇 Tap each candle to blow it out!
+                      </p>
+
+                      {/* SVG Rendered Virtual Cake */}
+                      <div className="relative py-8 flex justify-center items-center">
+                        <svg className="w-72 h-64 overflow-visible" viewBox="0 0 300 260">
+                          {/* Plate */}
+                          <ellipse cx="150" cy="220" rx="130" ry="25" fill="#1e293b" stroke="#38bdf8" strokeWidth="3" />
+                          <ellipse cx="150" cy="220" rx="110" ry="18" fill="#0f172a" />
+
+                          {/* Cake Bottom Layer (Blue Frosting) */}
+                          <rect x="50" y="140" width="200" height="70" rx="10" fill="url(#blueCakeGrad)" />
+                          <ellipse cx="150" cy="140" rx="100" ry="20" fill="#3b82f6" />
+
+                          {/* White Cream Drippings */}
+                          <path d="M 50 140 Q 75 165 100 140 Q 125 165 150 140 Q 175 165 200 140 Q 225 165 250 140" fill="none" stroke="#ffffff" strokeWidth="8" strokeLinecap="round" />
+
+                          {/* Top Frosting */}
+                          <ellipse cx="150" cy="135" rx="98" ry="18" fill="#60a5fa" />
+
+                          {/* Name on Cake */}
+                          <text x="150" y="180" textAnchor="middle" fill="#ffffff" fontFamily="Sacramento, cursive" fontSize="32" fontWeight="bold" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.5))">
+                            Madhuri
+                          </text>
+
+                          {/* 4 Candles */}
+                          {[75, 125, 175, 225].map((cx, idx) => (
+                            <g key={idx} onClick={() => handleBlowCandle(idx)} className="cursor-pointer group">
+                              {/* Candle Body */}
+                              <rect x={cx - 5} y="85" width="10" height="50" rx="3" fill="url(#candleGrad)" />
+                              {/* Wick */}
+                              <line x1={cx} y1="85" x2={cx} y2="78" stroke="#334155" strokeWidth="2" />
+
+                              {/* Flame */}
+                              {candlesLit[idx] ? (
+                                <g className="animate-bounce">
+                                  <ellipse cx={cx} cy="70" rx="6" ry="10" fill="#f59e0b" filter="drop-shadow(0 0 8px #fbbf24)" />
+                                  <ellipse cx={cx} cy="72" rx="3" ry="6" fill="#fef08a" />
+                                </g>
+                              ) : (
+                                <g className="animate-fade-out">
+                                  <path d={`M ${cx} 75 Q ${cx - 5} 65 ${cx + 2} 55`} fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="2 2" opacity="0.6" />
+                                </g>
+                              )}
+                            </g>
+                          ))}
+
+                          <defs>
+                            <linearGradient id="blueCakeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#1d4ed8" />
+                              <stop offset="50%" stopColor="#2563eb" />
+                              <stop offset="100%" stopColor="#1e40af" />
+                            </linearGradient>
+                            <linearGradient id="candleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="#38bdf8" />
+                              <stop offset="100%" stopColor="#e2e8f0" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
+
+                      <div className="flex justify-center gap-4">
+                        {candlesLit.map((isLit, i) => (
+                          <button
+                            key={i}
+                            onClick={() => handleBlowCandle(i)}
+                            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${isLit ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/40' : 'bg-slate-800 text-slate-500 border border-slate-700'}`}
+                          >
+                            {isLit ? `Candle ${i + 1} 🔥` : `Blown 💨`}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    /* WISH & CUT CAKE STEP */
+                    <div className="space-y-8 py-4">
+                      <div className="space-y-3">
+                        <h4 className="text-3xl font-serif text-sky-200 font-bold animate-pulse">
+                          Make a wish, Madhuri... ✨
+                        </h4>
+                        <p className="text-slate-300 text-sm">All candles blown out! Now take a deep breath...</p>
+                      </div>
+
+                      <div className="pt-4">
+                        {!cakeCut ? (
+                          <button
+                            onClick={handleCutCake}
+                            className="glow-button px-8 py-4 rounded-full text-white font-bold text-lg tracking-wider uppercase flex items-center gap-3 mx-auto shadow-2xl animate-bounce"
+                          >
+                            <span>🔪 CUT THE CAKE! 🎂</span>
+                          </button>
+                        ) : (
+                          <div className="space-y-4 animate-fade-in">
+                            <div className="text-4xl font-serif font-extrabold text-gradient-cyan">
+                              HAPPY BIRTHDAY, MADHURI! 🎉💙
+                            </div>
+                            <p className="text-slate-300">Cake cut with love! Get ready for the big reveal...</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </section>
+            </div>
+          )}
+
+          {/* --- STAGE 4: PAPER BLAST & HIDDEN MESSAGE REVEAL --- */}
+          {stage === 'paperblast' && (
+            <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 text-center space-y-8">
+              <div className="max-w-3xl space-y-8 animate-fade-in">
+                <span className="text-sky-400 font-semibold tracking-widest text-sm uppercase">Message For You</span>
+
+                <h1 className="text-5xl md:text-7xl font-serif font-extrabold text-gradient-blue">
+                  Madhuri...
+                </h1>
+
+                <div className="space-y-6 text-xl md:text-3xl text-slate-200 font-light leading-relaxed">
+                  <p className="text-sky-300 font-medium">You deserve all the happiness in the world. 💙</p>
+                  <p>Never stop believing in yourself.</p>
+                  <p>Never stop dreaming.</p>
+                  <p className="text-slate-400 font-normal">And never forget...</p>
+                </div>
+
+                <div className="glass-card p-8 rounded-3xl border-sky-400/50 shadow-[0_0_50px_rgba(56,189,248,0.3)]">
+                  <h2 className="text-3xl md:text-5xl font-serif font-bold text-gradient-cyan">
+                    You have a brother in me, always. 💙
+                  </h2>
+                </div>
+
+                <div className="pt-8">
+                  <button
+                    onClick={handleFinishConfetti}
+                    className="glow-button px-8 py-4 rounded-full text-white font-bold text-base tracking-wider uppercase"
+                  >
+                    <span>One Last Thing... →</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --- STAGE 5: FINAL CINEMATIC MESSAGE --- */}
+          {stage === 'finalmessage' && (
+            <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 text-center">
+              <div className="max-w-2xl space-y-8 animate-fade-in">
+                <h3 className="text-2xl md:text-3xl text-sky-400 font-light">One last thing...</h3>
+
+                <div className="space-y-6 text-2xl md:text-4xl font-serif text-white font-bold leading-snug">
+                  <p>"College may eventually end..."</p>
+                  <p className="text-gradient-cyan">"...But our story doesn't have to."</p>
+                </div>
+
+                <div className="w-16 h-1 bg-sky-500/50 mx-auto"></div>
+
+                <p className="text-xl md:text-2xl text-slate-300 font-light">
+                  4th year is only the beginning of the next chapter.
+                </p>
+
+                <div className="space-y-2 pt-4">
+                  <p className="text-lg text-sky-300">Whatever happens next...</p>
+                  <h2 className="text-3xl md:text-5xl font-serif font-extrabold text-gradient-blue">
+                    I'll always be cheering for you. 💙
+                  </h2>
+                  <p className="text-xl font-handwriting text-sky-200 pt-4 text-right">— Shiva 💙</p>
+                </div>
+
+                <div className="pt-8">
+                  <button
+                    onClick={handleFinishFinalMessage}
+                    className="glow-button px-8 py-4 rounded-full text-white font-bold text-base tracking-wider uppercase"
+                  >
+                    <span>Watch Fireworks 🎆</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --- STAGE 6: FIREWORKS DISPLAY --- */}
+          {stage === 'fireworks' && (
+            <FireworksCanvas onComplete={() => setStage('final')} />
+          )}
+
+          {/* --- STAGE 7: FINAL SCREEN --- */}
+          {stage === 'final' && (
+            <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 text-center space-y-8">
+              <div className="glass-card p-10 md:p-16 rounded-3xl max-w-2xl border-sky-400/40 space-y-6 shadow-2xl">
+                <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-gradient-blue">
+                  For Katari Madhuri 💙
+                </h1>
+
+                <p className="text-xl text-sky-300 font-light">
+                  From a college friend to family.
+                </p>
+
+                <p className="text-slate-300 text-lg font-light">
+                  Thank you for being part of my story.
+                </p>
+
+                <div className="w-24 h-0.5 bg-sky-500/30 mx-auto my-6"></div>
+
+                <p className="text-sm tracking-widest text-slate-400 uppercase font-semibold">
+                  Made with ❤️ by Shiva
+                </p>
+
+                <div className="pt-6">
+                  <button
+                    onClick={handleReplay}
+                    className="glow-button px-8 py-4 rounded-full text-white font-bold text-sm tracking-widest uppercase flex items-center gap-2 mx-auto"
+                  >
+                    <span>Replay the Journey ↻</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* --- LIGHTBOX MODAL --- */}
+          {lightboxImg && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-midnight/90 backdrop-blur-md animate-fade-in">
+              <div className="relative glass-card max-w-xl w-full p-6 rounded-3xl border-sky-400/50 space-y-4">
+                <button
+                  onClick={() => setLightboxImg(null)}
+                  className="absolute top-4 right-4 text-white bg-slate-800/80 hover:bg-sky-600 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg transition-colors"
+                >
+                  ✕
+                </button>
+
+                <div className="rounded-2xl overflow-hidden aspect-square border border-sky-500/30">
+                  <img src={lightboxImg.url} alt={lightboxImg.title} className="w-full h-full object-cover" />
+                </div>
+
+                <div className="space-y-2 text-center pt-2">
+                  <h3 className="text-2xl font-serif font-bold text-sky-200">{lightboxImg.title}</h3>
+                  <p className="text-slate-300 text-sm font-light leading-relaxed">{lightboxImg.desc}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // --- FIREWORKS CANVAS COMPONENT ---
+    const FireworksCanvas = ({ onComplete }) => {
+      const canvasRef = useRef(null);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['#38bdf8', '#00f0ff', '#3a86ff', '#ffffff', '#7dd3fc', '#a5f3fc'];
+
+        const createFirework = (x, y) => {
+          soundFX.playWhoosh();
+          const count = 65;
+          for (let i = 0; i < count; i++) {
+            const angle = (Math.PI * 2 / count) * i;
+            const speed = Math.random() * 5.5 + 2;
+            particles.push({
+              x, y,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              radius: Math.random() * 2 + 1.5,
+              color: colors[Math.floor(Math.random() * colors.length)],
+              alpha: 1,
+              decay: Math.random() * 0.015 + 0.008
+            });
+          }
+        };
+
+        createFirework(width * 0.3, height * 0.4);
+        setTimeout(() => createFirework(width * 0.7, height * 0.3), 800);
+        setTimeout(() => createFirework(width * 0.5, height * 0.35), 1600);
+        setTimeout(() => createFirework(width * 0.4, height * 0.5), 2400);
+        setTimeout(() => createFirework(width * 0.6, height * 0.45), 3200);
+
+        const startTime = Date.now();
+
+        const render = () => {
+          ctx.fillStyle = 'rgba(3, 7, 18, 0.2)';
+          ctx.fillRect(0, 0, width, height);
+
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.05;
+            p.alpha -= p.decay;
+
+            if (p.alpha <= 0) {
+              particles.splice(i, 1);
+              continue;
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha;
+            ctx.fill();
+          }
+          ctx.globalAlpha = 1.0;
+
+          if (Date.now() - startTime < 6000) {
+            animationFrameId = requestAnimationFrame(render);
+          } else {
+            onComplete();
+          }
+        };
+
+        render();
+
+        return () => {
+          cancelAnimationFrame(animationFrameId);
+        };
+      }, [onComplete]);
+
+      return (
+        <div className="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-6">
+          <canvas ref={canvasRef} className="fixed inset-0 z-0" />
+          <div className="relative z-10 space-y-4">
+            <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-gradient-cyan animate-pulse">
+              Celebrating Katari Madhuri ✨
+            </h1>
+            <p className="text-sky-300 font-light text-lg">A lifetime of happiness ahead...</p>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+
+</html>
