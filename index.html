@@ -370,7 +370,7 @@
         if (!this.isMuted) {
           // Attempt to play external audio file first, fallback to synthesized chord progression
           if (!this.audioEl) {
-            this.audioEl = new Audio('/assets/music.mp3');
+            this.audioEl = new Audio('music.mp3');
             this.audioEl.loop = true;
             this.audioEl.volume = 0.4;
           }
